@@ -30,11 +30,11 @@ printf "${LIGHT_GREEN}Physics dataset archive extraction: DONE\n\n${NO_COLOR}"
 
 # Download Political Science dataset archive
 printf "${LIGHT_BLUE}Starting Political Science dataset archive download...\n${NO_COLOR}"
-wget -c -O tmp/poltical_science.zip https://zenodo.org/record/6606557/files/poltical_science.zip
+wget -c -O tmp/poltical_science.zip https://zenodo.org/record/6606557/files/political_science.zip
 printf "${LIGHT_GREEN}Political Science dataset archive download: DONE\n\n${NO_COLOR}"
 # Decompress Political Science dataset archive
 printf "${LIGHT_BLUE}Starting Political Science dataset archive extraction...\n${NO_COLOR}"
-7z x -o"datasets" tmp/poltical_science.zip
+7z x -o"datasets" tmp/political_science.zip
 printf "${LIGHT_GREEN}Political Science dataset archive extraction: DONE\n\n${NO_COLOR}"
 
 # Download Psychology dataset archive

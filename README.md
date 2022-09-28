@@ -1,7 +1,7 @@
 # A Multi-Domain Benchmark for Personalized Search Evaluation Baselines
 Baselines from the paper A Multi-Domain Benchmark for Personalized Search Evaluation.
 
-The following guide assumes you are using a Linux distro, such as Ubuntu.
+The following guide assumes you are using a [Linux](https://en.wikipedia.org/wiki/Linux) distro, such as [Ubuntu](https://ubuntu.com).
 
 ## Step 1 - Download the datasets
 Install [wget](https://www.gnu.org/software/wget/):
@@ -12,7 +12,7 @@ Install [7-zip](https://www.7-zip.org):
 ```sh
 sudo apt install p7zip-full p7zip-rar
 ```
-Download the benchmark datasets with the provided script.
+Download the benchmark datasets with the provided script.  
 It will download, decompress, and move the datasets in the appropriate folders.
 ```sh
 sh download.sh
