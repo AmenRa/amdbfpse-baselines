@@ -6,7 +6,7 @@ class PersonalizedEvalCollatorPrecomputedEmbeddings:
     def pad_user_docs(self, U_doc_embs: list):
         """Pads user document sets to max len in the batch."""
         max_len = max(len(x) for x in U_doc_embs)
-        pad_emb = np.array([0.0] * U_doc_embs[0].shape[-1], dtype=np.float16)
+        pad_emb = np.array([0.0] * len(U_doc_embs[0][0]))
 
         history_mask = [
             [1] * len(x) + [0] * (max_len - len(x)) for x in U_doc_embs
@@ -26,7 +26,7 @@ class PersonalizedEvalCollatorPrecomputedEmbeddings:
             "bm25_doc_ids": bm25_doc_ids,
             "Q_emb": Q_emb,
             "D_emb": D_emb,
-            "U_doc_embs": torch.tensor(U_doc_embs),
+            "U_doc_embs": torch.tensor(np.array(U_doc_embs, dtype=np.float16)),
             "history_mask": torch.tensor(history_mask),
         }
 

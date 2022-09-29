@@ -6,12 +6,10 @@ from loguru import logger
 from omegaconf import DictConfig, OmegaConf
 from pytorch_lightning import seed_everything
 from src.biencoder import BiEncoder
-from src.data import (
-    EvalCollatorPrecomputedEmbeddings,
-    EvalDatasetPrecomputedEmbeddings,
-    PersonalizedEvalCollatorPrecomputedEmbeddings,
-    PersonalizedEvalDatasetPrecomputedEmbeddings,
-)
+from src.data import (EvalCollatorPrecomputedEmbeddings,
+                      EvalDatasetPrecomputedEmbeddings,
+                      PersonalizedEvalCollatorPrecomputedEmbeddings,
+                      PersonalizedEvalDatasetPrecomputedEmbeddings)
 from src.oneliner_utils import join_path, setup_logger, write_json
 from src.personalization_model import PersonalizationModel
 from torch import no_grad
@@ -50,7 +48,7 @@ def compute_personalized_run(model, dataloader):
                 model.compute_scores_for_precomputed_embeddings(
                     Q_emb=batch["Q_emb"].cuda(),
                     D_emb=batch["D_emb"].cuda(),
-                    U_docs_emb=batch["U_docs_emb"].cuda(),
+                    U_doc_embs=batch["U_doc_embs"].cuda(),
                     history_mask=batch["history_mask"].cuda(),
                 )
                 .detach()
@@ -126,7 +124,7 @@ def main(cfg: DictConfig) -> None:
         )
 
         if cfg.model.kind == "personalized":
-            run = compute_personalized_run()(model=model, dataloader=dataloader)
+            run = compute_personalized_run(model=model, dataloader=dataloader)
         else:
             run = compute_run(model=model, dataloader=dataloader)
 
