@@ -277,36 +277,3 @@ class PersonalizationModel(LightningModule):
         )
 
         return scores.reshape(Q_emb.shape[0], -1)
-
-    # THIS IS JUST FOR ANALYSIS PURPOSE
-    def compute_scores_for_precomputed_embeddings_analysis(
-        self,
-        Q_emb: Tensor,
-        D_emb: Tensor,
-        U_doc_embs: Tensor,
-        history_mask: Tensor,
-    ) -> Tensor:
-        # Compute user embeddings ----------------------------------------------
-        U_emb = self.user_encoder(U_doc_embs, Q_emb, history_mask)
-        n_zero_users = torch.sum(~U_emb.any(1))
-
-        # Compute scores -------------------------------------------------------
-        scores = self.listwise_scoring_function(
-            U_emb,
-            D_emb.reshape(D_emb.shape[0] * D_emb.shape[1], D_emb.shape[2]),
-        )
-
-        return scores.reshape(Q_emb.shape[0], -1), n_zero_users
-
-    # THIS IS JUST FOR ANALYSIS PURPOSE
-    def compute_scores_for_precomputed_embeddings_analysis_2(
-        self, Q_emb: Tensor, U_doc_embs: Tensor, history_mask: Tensor,
-    ) -> Tensor:
-        # Compute user embeddings ----------------------------------------------
-        attention_weights = self.user_encoder.aggregator.get_attention_weights(
-            Q_emb, U_doc_embs, history_mask
-        )
-        return torch.count_nonzero(attention_weights, dim=1)
-
-    def configure_optimizers(self):
-        return self.optimizer(self.parameters(), lr=self.learning_rate)
