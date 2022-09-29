@@ -1,0 +1,10 @@
+name: QA
+kind: personalized
+
+init:
+  user_encoder_kwargs:
+    aggregation_mode: attention
+    embedding_dim: ${language_model.embedding_dim}
+  language_model: ${language_model.name}
+  learning_rate: ${training.learning_rate}
+  margin: 0.1

@@ -1,0 +1,2 @@
+learning_rate: 0.00002  # 2e-5
+n_user_docs: 20

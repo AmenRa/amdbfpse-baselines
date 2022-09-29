@@ -1,0 +1,3 @@
+init:
+  name: ${language_model.name}
+  max_len: 64

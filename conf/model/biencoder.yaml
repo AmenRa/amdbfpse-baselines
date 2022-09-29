@@ -1,0 +1,7 @@
+name: BiEnc
+kind: non-personalized
+
+init:
+  language_model: ${language_model.name}
+  learning_rate: ${training.learning_rate}
+  margin: 0.1

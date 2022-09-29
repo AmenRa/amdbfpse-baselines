@@ -1,0 +1,6 @@
+train_dataloader_params:
+  batch_size: 32
+  shuffle: true
+  num_workers: 4
+  pin_memory: true
+  persistent_workers: True

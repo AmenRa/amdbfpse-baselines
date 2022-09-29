@@ -1,0 +1,28 @@
+defaults:
+  - model: mean
+  - language_model: all-MiniLM-L6-v2
+  - trainer: gpu
+  - tokenizer: default
+  - training: default
+  - logging: default
+  - dataset: computer_science
+  - datamodule: default
+  - _self_
+  - override hydra/hydra_logging: disabled  
+  - override hydra/job_logging: disabled 
+
+general:
+  seed: 42
+  out_dir: outputs
+  dataset: ${dataset.name}
+  dataset_dir: ${general.out_dir}/${general.dataset}
+  model_dir: ${general.dataset_dir}/${model.name}
+  data_dir: ${general.model_dir}/data
+  logs_dir: ${general.model_dir}/logs
+  runs_dir: ${general.dataset_dir}/runs
+  hyperparams_dir: ${general.dataset_dir}/hyperparams
+
+hydra:
+  output_subdir: ${general.model_dir}/hydra  
+  run:  
+    dir: .

@@ -1,0 +1,2 @@
+name: "./all-MiniLM-L6-v2"
+embedding_dim: 384
