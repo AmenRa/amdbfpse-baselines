@@ -17,28 +17,25 @@ def main(cfg: DictConfig) -> None:
         join_path(cfg.dataset.data_dir, "test", "qrels.json")
     )
 
-    logger.info("Loading test runs...")
-    runs = []
-
-    logger.info("Loading BM25 run...")
+    logger.info("Loading BM25 test run...")
     bm25_run = Run.from_file(
-        join_path(cfg.datamodule.data_dir, "test", "bm25_run.json")
+        join_path(cfg.dataset.data_dir, "test", "bm25_run.json")
     )
     bm25_run.name = "BM25"
-    runs.append(bm25_run)
+    runs = [bm25_run]
 
     models = [
         "BM25_BiEnc",
-        "BM25_Mena",
+        "BM25_Mean",
         "BM25_QA",
-        "BM25_BiEnc_Mena",
+        "BM25_BiEnc_Mean",
         "BM25_BiEnc_QA",
     ]
 
     for model in models:
         model_name = " + ".join(model.split("_"))
 
-        logger.info(f"Loading {model_name} run...")
+        logger.info(f"Loading {model_name} test run...")
         run = Run.from_file(
             join_path(cfg.general.runs_dir, f"{model}_test.json")
         )
