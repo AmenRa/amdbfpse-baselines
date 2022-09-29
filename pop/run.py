@@ -6,6 +6,7 @@ from src.oneliner_utils import join_path, read_jsonl
 @click.command()
 @click.option("--dataset", required=True)
 def main(dataset):
+    print(f"Computing Pop run for {dataset}")
     dataset_path = join_path("datasets", dataset)
     in_refs_path = join_path(dataset_path, "in_refs.jsonl")
 

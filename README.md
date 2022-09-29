@@ -30,7 +30,6 @@ conda env create -f env.yml
 conda activate amdbfpse-baselines
 ```
 
-
 ## Step 3 - Clone the language model locally
 Install [Git LFS](https://git-lfs.github.com):
 ```sh
@@ -41,4 +40,9 @@ git lfs install
 Clone the model:
 ```sh
 git clone https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2
+```
+
+## Step 4 - Train & Evaluate
+```sh
+sh run.sh
 ```
