@@ -56,6 +56,9 @@ class PersonalizationModel(LightningModule):
         self.ndcg = RetrievalNormalizedDCG()
         self.map = RetrievalMAP()
 
+    def configure_optimizers(self):
+        return self.optimizer(self.parameters(), lr=self.learning_rate)
+
     def listwise_scoring_function(self, Q_emb: Tensor, D_emb: Tensor) -> Tensor:
         """Applies the scoring function to each query-document pre-defined combination.
 
